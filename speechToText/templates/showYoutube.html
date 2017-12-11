@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Baloo|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '/speechToText/style.css' %}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/user/login">LOGIN</a></li>
+        <li><a href="/user/logout">LOGOUT</a></li>
+        <li><a href="/speechToText">SPEECH TO TEXT</a></li>
+        <li><a href="/summarize/sum">SUMMARIZE</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <img src="{% static 'logo.png' %}">
+</div>
+
+<div  class="w3-center w3-container w3-margin-top">
+    <table class="w3-center w3-container w3-margin-top">
+        <tr>
+            <td><div id="player"></div></td>
+        </tr>
+        <tr>
+            <td align="right">
+                <div class="w3-center">
+                    <h2> 저장이 완료되었습니다.</h2> <a href="/summarize/sum">게시물 확인</a>
+                    <h4 align="center"> {{youtube_caption}}</h4>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="about" class="container-fluid w3-center">
+
+  <div class="row">
+      <div id="player"></div>
+    <div class="col-sm-8 w3-center" style="color: #000000">
+        <h2> 저장이 완료되었습니다.</h2> <a href="/summarize/sum" color="#22d">게시물 확인</a>
+        <h4 align="center"> {{youtube_caption}}</h4>
+    </div>
+  </div>
+</div>
+</body>
+
+<script>
+    var player;
+    var vid = "{{ youtube_id }}";
+
+    $(document).ready(function() {
+
+    loadPlayer();
+
+    });
+
+
+    function loadPlayer(){
+
+      if(typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";   // 요게 api 스크립트
+
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+
+        window.onYouTubePlayerAPIReady = function() {
+
+          onYouTubePlayer();
+
+        };
+
+      } else {
+
+        onYouTubePlayer();
+
+      }
+
+    }
+
+    function onYouTubePlayer(){
+
+        player = new YT.Player('player', { //요게 html element id
+
+            height: '315',
+
+            width: '560',
+
+            videoId: vid,
+
+        });
+
+    }
+</script>

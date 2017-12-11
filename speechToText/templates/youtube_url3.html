@@ -1,0 +1,385 @@
+{% load static static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Baloo|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{% static "/dist/css/main.css" %}">
+  <script src = {% static "app.js" %}> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  #sidebar {
+      background: #f4511e;
+      float: left;
+      width: 150px;
+      height: 100px;
+      font: 400 15px Lato, sans-serif;
+      color:#fff;
+    }
+
+  #maincontent {
+      background: white;
+      width : 600px;
+      height: 300px;
+      float: left;
+      border: 1px solid #ddd;
+      margin:5px;
+    }
+
+  #sidebar2 {
+      background: white;
+      float: left;
+      width: 200px;
+      height: 400px;
+      font: 400 15px Lato, sans-serif;
+    }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li {
+    list-style: none;
+  }
+
+
+  #ball {
+    display:block;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: absolute;
+    right: 550px;
+    bottom: 250px;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    will-change: background;
+    -webkit-transition: background 200ms ease-in-out;
+    -moz-transition: background 200ms ease-in-out;
+    transition: background 200ms ease-in-out;
+    text-align: center;
+    line-height: 3.2em;
+    cursor: pointer;
+  }
+
+  #ball .ion-mic-c {
+    display: inline;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 26%;
+    font-size: 45px;
+    text-align: center;
+    align-content: center;
+  }
+
+  #ballOuter {
+    display:block;
+    background: crimson;
+    position: absolute;
+    right: 550px;
+    opacity: 0.2;
+    bottom: 250px;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    will-change: transform;
+    transform: scale(1);
+    transform: scale(1) translateZ(0);
+    -webkit-transform: scale(1);
+    -webkit-transform: scale(1) translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    transition: transform 200ms cubic-bezier(0.64, 0.37, 0.26, 1.25);
+    -webkit-transition: transform 200ms cubic-bezier(0.64, 0.37, 0.26, 1.25);
+  }
+
+    #results {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    min-height: 300px;
+    }
+
+   body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        color: #818181;
+   }
+
+
+  h2 {
+      font-size: 24px;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }
+  .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+      padding: 100px 25px;
+      font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .logo-small {
+      color: #f4511e;
+      font-size: 50px;
+  }
+  .logo {
+      color: #f4511e;
+      font-size: 200px;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+      background-image: none;
+      color: #f4511e;
+  }
+  .carousel-indicators li {
+      border-color: #f4511e;
+  }
+  .carousel-indicators li.active {
+      background-color: #f4511e;
+  }
+  .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  .panel {
+      border: 1px solid #f4511e;
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid #f4511e;
+      background-color: #fff !important;
+      color: #f4511e;
+  }
+  .panel-heading {
+      color: #fff !important;
+      background-color: #f4511e !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 32px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+  }
+  .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #f4511e;
+      color: #fff;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+        font-size: 150px;
+    }
+  }
+
+    main {
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 20px;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/user/login">LOGIN</a></li>
+        <li><a href="/user/logout">LOGOUT</a></li>
+        <li><a href="/speechToText">SPEECH TO TEXT</a></li>
+        <li><a href="/summarize/sum">SUMMARIZE</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>MENTOR</h1>
+  <p>Memorizing English-lecture Note To Overview summary with Recommendation</p>
+</div>
+
+<div id="sidebar">
+    <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/speechToText">Lecture</a></li>
+            <li><a href="/speechToText/youtube_url">URL</a></li>
+          </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div id="maincontent">
+    <span class="final" id="final_span" ></span>
+    <main>
+        <span id="speech"></span>
+        <span id="interim"></span>
+    </main>
+    <nav id="speechSpace">"Click" <small style="color:#777"> the icon to record.</small></nav>
+    <INPUT TYPE=TEXT ID=youtube_url SIZE=30 placeholder="Type the Youtube url." MAXLENGTH="200">
+        <button id="id_url" OnClick="javascript:saveYoutubeURL();">Download </button></h4>
+</div>
+<div id="sidebar2">
+    <div id="ballOuter"></div>
+    <div id="ball" >
+        <i class="ion-mic-c"></i>
+    </div>
+
+    <INPUT TYPE=TEXT ID=rec_title SIZE=30 placeholder="Type the record title." MAXLENGTH="20">
+    <button id="id_a"  OnClick="javascript:saveTitle();" > Save </button>
+</div>
+
+
+</body>
+<script>
+    function saveYoutubeURL() {
+        url_address = document.getElementById('youtube_url');
+    }
+
+    $(document).on("click", "#id_url", function() {
+        var c_data = {};
+        c_data['whole_url'] = url_address.value;
+        $.ajax({
+            url : "/speechToText/youtube_url/get_caption",
+            dataType:"json",
+            data: c_data
+        }).done(function(msg) {
+            $("#text_area").append("done : "+msg['message']+"<_br />");
+        });
+        location.href='/speechToText/youtube_url/get_caption'
+     });
+</script>
+</html>

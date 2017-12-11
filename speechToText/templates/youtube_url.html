@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static static %}
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <meta charset="UTF-8">
+
+  <link href="https://fonts.googleapis.com/css?family=Baloo|Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '/speechToText/style.css' %}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <title>Hold 'Q' to begin speech recognition</title>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">HOME</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">ABOUT</a></li>
+        <li><a href="/user/login">LOGIN</a></li>
+        <li><a href="/user/logout">LOGOUT</a></li>
+        <li><a href="/speechToText">SPEECH TO TEXT</a></li>
+        <li><a href="/summarize/sum">SUMMARIZE</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <img src="{% static 'logo.png' %}">
+</div>
+
+<div class="w3-center w3-container w3-margin-top">
+  <table>
+    <tr>
+      <td bgcolor="#ff8503" class="w3-center"><a href="/speechToText"
+                                                 font-family="Montserrat"
+                                                 style="color:white" >LECTURE</a></td>
+      <td bgcolor="#ff8503" class="w3-center"><a href="/speechToText/youtube_url"
+                                                 font-family="Montserrat"
+                                                 style="color:white">URL</a></td>
+    </tr>
+  </table>
+  <table class="w3-center w3-container w3-margin-top">
+    <tr>
+      <td>
+        <INPUT TYPE=TEXT ID=youtube_url SIZE=30 class="w3-white w3-large" placeholder="Type the Youtube url." MAXLENGTH="200">
+        <button id="id_url" class="w3-button w3-black w3-small" OnClick="javascript:saveYoutubeURL();">Download </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</html>
+<script>
+    function saveYoutubeURL() {
+        url_address = document.getElementById('youtube_url');
+    }
+
+    $(document).on("click", "#id_url", function() {
+        var c_data = {};
+        c_data['whole_url'] = url_address.value;
+        $.ajax({
+            url : "/speechToText/youtube_url/get_caption",
+            dataType:"json",
+            data: c_data
+        }).done(function(msg) {
+            $("#text_area").append("done : "+msg['message']+"<_br />");
+        });
+        location.href='/speechToText/youtube_url/get_caption'
+     });
+
+</script>
+
